@@ -12,8 +12,6 @@ spec:
       labels:
         app: cw-backend
     spec:
-      imagePullSecrets:
-        - name: ghcr-secret
       containers:
         - name: cw-backend
           image: ghcr.io/tumbler-cp/cwback:latest
