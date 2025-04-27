@@ -1,0 +1,4 @@
+meta/back/*.jar
+meta/front/build
+.vagrant
+.vscode

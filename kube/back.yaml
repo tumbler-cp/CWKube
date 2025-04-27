@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cw-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cw-backend
+  template:
+    metadata:
+      labels:
+        app: cw-backend
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: cw-backend
+          image: ghcr.io/tumbler-cp/cwback:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cw-backend
+spec:
+  selector:
+    app: cw-backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
